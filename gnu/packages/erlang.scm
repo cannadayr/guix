@@ -277,6 +277,31 @@ Mustache template engine")
 Erlang.")
     (license license:asl2.0)))
 
+(define-public erlang-cache-tab
+  (package
+    (name "erlang-cache-tab")
+    (version "1.0.30")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "cache_tab" version))
+              (sha256
+               (base32
+                "186d642wlxc4bj9n3vgkjn2dad1fn3nxp9h6fxi44k7qv005x2kd"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-p1-utils))
+    (home-page "https://github.com/processone/cache_tab/")
+    (synopsis "In-memory cache Erlang / Elixir library")
+    (description
+     "The @code{cache_tab} application is intended to proxy
+back-end operations for Key-Value insert, lookup and delete and maintain a
+cache of those Key-Values in-memory, to save back-end operations.
+
+Operations are intended to be atomic between back-end and cache tables.
+
+The lifetime of the cache object and the max size of the cache can be defined
+as table parameters to limit the size of the in-memory tables.")
+    (license license:asl2.0)))
+
 (define-public erlang-certifi
   (package
     (name "erlang-certifi")
