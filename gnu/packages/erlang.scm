@@ -650,6 +650,25 @@ Group.")
     (license (list license:mpl1.0 ;Erlang Public License v1.1 ErlPL1.1
                    license:asl2.0))))
 
+(define-public erlang-p1-utils
+  (package
+    (name "erlang-p1-utils")
+    (version "1.0.25")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "p1_utils" version))
+              (sha256
+               (base32
+                "0ir8lfnhf3l4b6ifj2s24wj5qsc3hydfpy3z339ybipj512226cj"))))
+    (build-system rebar-build-system)
+    (propagated-inputs (list erlang-pc))
+    (home-page "https://github.com/processone/p1_utils/")
+    (synopsis "Erlang utility modules from ProcessOne")
+    (description
+     "@code{p1_utils} is an application containing ProcessOne
+modules and tools that are leveraged in other development projects.")
+    (license license:asl2.0)))
+
 (define-public erlang-parse-trans
   (package
     (name "erlang-parse-trans")
