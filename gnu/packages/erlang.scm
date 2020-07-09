@@ -954,6 +954,24 @@ Erlang.")
 library for Erlang < 20.")
     (license license:asl2.0)))
 
+(define-public erlang-stun
+  (package
+    (name "erlang-stun")
+    (version "1.2.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "stun" version))
+              (sha256
+               (base32
+                "1fd3s9gl0jy4d8zca8d70qf1wis8j1lzpa9mxkx1791adswcfm2g"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-fast-tls erlang-p1-utils))
+    (home-page "https://hex.pm/packages/stun/")
+    (synopsis "STUN and TURN library for Erlang / Elixir")
+    (description "This package provides a STUN and TURN library for Erlang /
+Elixir.")
+    (license license:asl2.0)))
+
 (define-public rebar3
   (package
     (name "rebar3")
