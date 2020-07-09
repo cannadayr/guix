@@ -617,6 +617,22 @@ Group.")
     (description "This package provides a pure Erlang MySQL driver.")
     (license (list license:bsd-3 license:asl2.0))))
 
+(define-public erlang-p1-oauth2
+  (package
+    (name "erlang-p1-oauth2")
+    (version "0.6.11")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "p1_oauth2" version))
+              (sha256
+               (base32
+                "1nv33z6jmnagb48dpxlm7zrhi64894ls60mvfda55fc2jgjnlg4w"))))
+    (build-system rebar-build-system)
+    (home-page "https://hex.pm/packages/p1_oauth2/")
+    (synopsis "Erlang OAuth 2.0 implementation")
+    (description "This package provides an Erlang OAuth 2.0 implementation.")
+    (license (list license:expat license:asl2.0))))
+
 (define-public erlang-parse-trans
   (package
     (name "erlang-parse-trans")
