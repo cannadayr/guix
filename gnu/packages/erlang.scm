@@ -633,6 +633,23 @@ Group.")
     (description "This package provides an Erlang OAuth 2.0 implementation.")
     (license (list license:expat license:asl2.0))))
 
+(define-public erlang-p1-pgsql
+  (package
+    (name "erlang-p1-pgsql")
+    (version "1.1.18")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "p1_pgsql" version))
+              (sha256
+               (base32
+                "0ipx4lmxm5qh6xs4ldij37rysd1x9rypljf8zrj9zvczsnjn6f2a"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/processone/p1_pgsql/")
+    (synopsis "PostgreSQL driver")
+    (description "This package provides a pure Erlang PostgreSQL driver.")
+    (license (list license:mpl1.0 ;Erlang Public License v1.1 ErlPL1.1
+                   license:asl2.0))))
+
 (define-public erlang-parse-trans
   (package
     (name "erlang-parse-trans")
