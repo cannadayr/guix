@@ -518,6 +518,24 @@ GIF.")
 of reusable Erlang components.")
     (license license:expat)))
 
+(define-public erlang-esip
+  (package
+    (name "erlang-esip")
+    (version "1.0.47")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "esip" version))
+              (sha256
+               (base32
+                "0glgzs8rj2cmvcrklbjpx036868w2n3m0z0lrcj5ncldkv207rwr"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-fast-tls erlang-p1-utils erlang-stun))
+    (home-page "https://github.com/processone/esip")
+    (synopsis "SIP server component in Erlang")
+    (description "This package provides a SIP (Session Initiation Protocol)
+server component in Erlang.")
+    (license license:asl2.0)))
+
 (define-public erlang-eunit-formatters
   (package
     (name "erlang-eunit-formatters")
