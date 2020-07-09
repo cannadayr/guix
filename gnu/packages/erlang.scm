@@ -1143,6 +1143,23 @@ library for Erlang < 20.")
 Elixir.")
     (license license:asl2.0)))
 
+(define-public erlang-yconf
+  (package
+    (name "erlang-yconf")
+    (version "1.0.13")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "yconf" version))
+              (sha256
+               (base32
+                "0lfqhampqww6g3fvpny3nv30lqf3ai8qya44jqi2389x5chpim1z"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-fast-yaml))
+    (home-page "https://hex.pm/packages/yconf/")
+    (synopsis "YAML configuration processor")
+    (description "YAML configuration processor")
+    (license license:asl2.0)))
+
 (define-public rebar3
   (package
     (name "rebar3")
