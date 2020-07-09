@@ -1195,6 +1195,32 @@ Elixir.")
     (description "YAML configuration processor")
     (license license:asl2.0)))
 
+(define-public erlang-xmpp
+  (package
+    (name "erlang-xmpp")
+    (version "1.5.8")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "xmpp" version))
+              (sha256
+               (base32
+                "0jjvh9zi3qmy6nfng41s61s5ibq2bp6sr7l0pq816cx7vqwlasln"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-ezlib
+                  erlang-fast-tls
+                  erlang-fast-xml
+                  erlang-idna
+                  erlang-p1-utils
+                  erlang-provider-asn1))
+    (home-page "https://github.com/processone/xmpp/")
+    (synopsis "Erlang/Elixir XMPP parsing and serialization library")
+    (description
+     "The library provides comprehensive representation of XMPP
+elements as well as tools to work with them.  Every such element is
+represented by an Erlang record.  Most of the library's code is auto generated
+and thus considered to be bug free and efficient.")
+    (license license:asl2.0)))
+
 (define-public rebar3
   (package
     (name "rebar3")
