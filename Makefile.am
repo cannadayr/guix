@@ -153,6 +153,7 @@ MODULES =					\
   guix/build-system/dune.scm			\
   guix/build-system/elm.scm			\
   guix/build-system/emacs.scm			\
+  guix/build-system/elixir.scm			\
   guix/build-system/font.scm			\
   guix/build-system/go.scm			\
   guix/build-system/meson.scm			\
@@ -212,6 +213,7 @@ MODULES =					\
   guix/build/emacs-build-system.scm		\
   guix/build/meson-build-system.scm		\
   guix/build/minify-build-system.scm		\
+  guix/build/elixir-build-system.scm		\
   guix/build/font-build-system.scm		\
   guix/build/go-build-system.scm		\
   guix/build/android-repo.scm			\
