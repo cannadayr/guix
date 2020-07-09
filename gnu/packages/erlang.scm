@@ -724,6 +724,25 @@ compile-time constant.")
 code.")
     (license license:expat)))
 
+(define-public erlang-pkix
+  (package
+    (name "erlang-pkix")
+    (version "1.0.9")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "pkix" version))
+              (sha256
+               (base32
+                "0fiy203vfn9fgqvy2aa9cckmy6jak47c19a5kdfa1vflrl4jrays"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/processone/pkix")
+    (synopsis "PKIX certificates management library for Erlang")
+    (description
+     "This library simplifies certificates configuration in Erlang
+programs.  It reduces a user configuration to something as simple providing a
+path pattern/glob for specifying the certicicate files.")
+    (license license:asl2.0)))
+
 (define-public erlang-proper
   (package
     (name "erlang-proper")
