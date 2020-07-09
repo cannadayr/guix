@@ -601,6 +601,22 @@ Group.")
     (description "This package provides a library to handle mime-types.")
     (license license:expat)))
 
+(define-public erlang-p1-mysql
+  (package
+    (name "erlang-p1-mysql")
+    (version "1.0.19")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "p1_mysql" version))
+              (sha256
+               (base32
+                "1c92jsa6gnj1hffqb3r277i3szln0kdcr15fnqa9r5g822swvxl8"))))
+    (build-system rebar-build-system)
+    (home-page "https://hex.pm/packages/p1_mysql/")
+    (synopsis "Pure Erlang MySQL driver")
+    (description "This package provides a pure Erlang MySQL driver.")
+    (license (list license:bsd-3 license:asl2.0))))
+
 (define-public erlang-parse-trans
   (package
     (name "erlang-parse-trans")
