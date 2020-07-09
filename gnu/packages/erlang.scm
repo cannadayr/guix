@@ -787,6 +787,34 @@ Group.")
     (description "An Erlang library for encoding and decoding JSON data.")
     (license license:expat)))
 
+(define-public erlang-lager
+  (package
+    (name "erlang-lager")
+    (version "3.9.2")
+    (source (origin
+              ;; Source tarball on hex.pm lacks test directory.
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/erlang-lager/lager")
+                    (commit version)))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0sxqb7fxa95m9019a0fmzp0220wsfr0xmzw965mzkg0xl5qq2p4m"))
+              (modules '((guix build utils)))
+              (snippet '(begin
+                          (delete-file "rebar") #t))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-goldrush))
+    (home-page "https://github.com/erlang-lager/lager")
+    (synopsis "Erlang logging framework")
+    (description
+     "Lager (as in the beer) is a logging framework for Erlang.
+Its purpose is to provide a more traditional way to perform logging in an
+erlang application that plays nicely with traditional UNIX logging tools like
+logrotate and syslog.")
+    (license license:asl2.0)))
+
 (define-public erlang-mimerl
   (package
     (name "erlang-mimerl")
