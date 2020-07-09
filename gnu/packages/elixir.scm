@@ -5,6 +5,7 @@
 ;;; Copyright © 2017 nee <nee.git@cock.li>
 ;;; Copyright © 2018, 2019, 2021 Tobias Geerinckx-Rice <me@tobias.gr>
 ;;; Copyright © 2018 Nikita <nikita@n0.is>
+;;; Copyright © 2020, 2021 Hartmut Goebel <h.goebel@crazy-compilers.com>
 ;;; Copyright © 2021 Oskar Köök <oskar@maatriks.ee>
 ;;; Copyright © 2021 Cees de Groot <cg@evrl.com>
 ;;;
@@ -26,7 +27,9 @@
 (define-module (gnu packages elixir)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix build-system gnu)
+  #:use-module (guix build-system elixir)
   #:use-module (guix gexp)
+  #:use-module (guix download)
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (gnu packages)
@@ -105,4 +108,22 @@
 scalable and maintainable applications.  Elixir leverages the Erlang VM, known
 for running low-latency, distributed and fault-tolerant systems, while also
 being successfully used in web development and the embedded software domain.")
+    (license license:asl2.0)))
+
+(define-public elixir-artificery
+  (package
+    (name "elixir-artificery")
+    (version "0.4.3")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "artificery" version))
+              (sha256
+               (base32
+                "0105zjghn01zncvwza1bkih0apkz7vxbxgbsjd78h80flcrm7s8j"))))
+    (build-system elixir-build-system)
+    (inputs (list erlang-hex-core))
+    (home-page "https://github.com/bitwalker/artificery")
+    (synopsis "Toolkit for terminal user interfaces in Elixir")
+    (description "This package provides a toolkit for terminal user interfaces
+in Elixir.")
     (license license:asl2.0)))
