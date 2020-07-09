@@ -517,6 +517,31 @@ arguments using the GNU getopt syntax.")
 specifications.")
     (license license:asl2.0)))
 
+(define-public erlang-jiffy
+  (package
+    (name "erlang-jiffy")
+    (version "1.1.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "jiffy" version))
+              (sha256
+               (base32
+                "0k2wg2s8c8jmla2kiz5s3gzqn3a1i3x1sy2wf8xc669w3icg1qb2"))))
+    (build-system rebar-build-system)
+    (arguments
+     `(#:phases (modify-phases %standard-phases
+                  (add-before 'build 'configure-compiler
+                    (lambda _
+                      (setenv "CC" "gcc") #t)))))
+    (home-page "https://github.com/davisp/jiffy")
+    (synopsis "JSON Decoder/Encoder")
+    (description
+     "A JSON parser as a NIF.  This is a complete rewrite of the
+work I did in EEP0018 that was based on Yajl.  This new version is a hand
+crafted state machine that does its best to be as quick and efficient as
+possible while not placing any constraints on the parsed JSON.")
+    (license (list license:expat license:bsd-3))))
+
 (define-public erlang-jsone
   (package
     (name "erlang-jsone")
