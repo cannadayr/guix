@@ -212,6 +212,22 @@ built-in support for concurrency, distribution and fault tolerance.")
 files.")
     (license license:asl2.0)))
 
+(define-public erlang-base64url
+  (package
+    (name "erlang-base64url")
+    (version "1.0.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "base64url" version))
+              (sha256
+               (base32
+                "0p4zf53v86zfpnk3flinjnk6cx9yndsv960386qaj0hsfgaavczr"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/dvv/base64url")
+    (synopsis "URL-safe base64-compatible codec")
+    (description "This package provides an URL-safe base64-compatible codec.")
+    (license license:expat)))
+
 (define-public erlang-bbmustache
   (package
     (name "erlang-bbmustache")
