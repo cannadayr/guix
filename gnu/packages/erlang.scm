@@ -38,7 +38,9 @@
   #:use-module (guix utils)
   #:use-module (gnu packages)
   #:use-module (gnu packages fontutils)
+  #:use-module (gnu packages gd)
   #:use-module (gnu packages gl)
+  #:use-module (gnu packages image)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages perl)
   #:use-module (gnu packages version-control)
@@ -439,6 +441,55 @@ Markdown.")
     (synopsis "ANSI colors for Erlang")
     (description "This package provides ANSI colors for Erlang.")
     (license license:expat)))
+
+(define-public erlang-eimp
+  (package
+    (name "erlang-eimp")
+    (version "1.0.22")
+    (source
+      (origin
+        (method git-fetch)  ;; package at hex.pm is missing the Makefile
+        (uri (git-reference
+              (url "https://github.com/processone/eimp")
+              (commit version)))
+       (file-name (git-file-name name version))
+        (sha256
+          (base32 "1d480w2p5ax29fl7q2p90zjwa18nbaxczcrajfrhx5hqja1lxcvc"))))
+    (build-system rebar-build-system)
+    ;; (native-inputs
+    ;;  `(("erlang" ,erlang)
+    ;;    ("rebar3" ,rebar3)))
+    (inputs (list erlang-p1-utils gd libjpeg-turbo libpng libwebp))
+    (arguments
+     `(;;#:modules (;;(srfi srfi-19) ; make-time, et cetera.
+       ;;           (guix build utils)
+       ;;           (guix build gnu-build-system)
+       ;;           ((guix build rebar-build-system) #:prefix rebar:))
+       ;; #:imported-modules (;;(guix build rebar-build-system)
+       ;;                     ;;(guix build syscalls)
+       ;;                     ,@%rebar-build-system-modules
+       ;;                     ,@%gnu-build-system-modules)
+       #:phases
+       (modify-phases %standard-phases
+         (add-before 'build 'configure-compiler
+           (lambda _
+             (setenv "CC" "gcc")
+             #t))
+         ;; (replace 'unpack
+         ;;   (assoc-ref rebar:%standard-phases 'unpack))
+         ;; (replace 'build
+         ;;   (lambda _
+         ;;     ;;(setenv "CC" "gcc")
+         ;;     (invoke "rebar3" "compile")))
+         ;; (add-before 'build 'depends
+         ;;   (assoc-ref rebar:%standard-phases 'erlang-depends))
+         )))
+    (home-page "https://github.com/processone/eimp/")
+    (synopsis "Erlang/Elixir image converter")
+    (description "@code{eimp} is an Erlang/Elixir application for manipulating
+graphic images using external C libraries.  It supports WebP, JPEG, PNG and
+GIF.")
+    (license license:asl2.0)))
 
 (define-public erlang-erlware-commons
   (package
