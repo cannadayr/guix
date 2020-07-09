@@ -861,6 +861,23 @@ a well configured release directory.")
 Erlang.")
     (license license:expat)))
 
+(define-public erlang-unicode-util-compat
+  (package
+    (name "erlang-unicode-util-compat")
+    (version "0.7.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "unicode_util_compat" version))
+              (sha256
+               (base32
+                "08952lw8cjdw8w171lv8wqbrxc4rcmb3jhkrdb7n06gngpbfdvi5"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/benoitc/unicode_util_compat")
+    (synopsis "Unicode_util compatibility library for Erlang < 20")
+    (description "This package provides a @code{unicode_util} compatibility
+library for Erlang < 20.")
+    (license license:asl2.0)))
+
 (define-public rebar3
   (package
     (name "rebar3")
