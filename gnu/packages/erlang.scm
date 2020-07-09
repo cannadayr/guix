@@ -542,6 +542,25 @@ crafted state machine that does its best to be as quick and efficient as
 possible while not placing any constraints on the parsed JSON.")
     (license (list license:expat license:bsd-3))))
 
+(define-public erlang-jose
+  (package
+    (name "erlang-jose")
+    (version "1.11.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "jose" version))
+              (sha256
+               (base32
+                "1lj715gzl022yc47qsg9712x8nc9wi7x70msv8c3lpym92y3y54q"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/potatosalad/erlang-jose")
+    (synopsis "JSON Object Signing and Encryption for Erlang and Elixir")
+    (description
+     "This package provides JSON Object Signing and
+Encryption (JOSE).  JOSE is a set of standards established by the JOSE Working
+Group.")
+    (license license:expat)))
+
 (define-public erlang-jsone
   (package
     (name "erlang-jsone")
