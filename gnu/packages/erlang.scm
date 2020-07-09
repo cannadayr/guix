@@ -552,6 +552,24 @@ server component in Erlang.")
     (description "This package provides a better output for Erlang eunits.")
     (license license:asl2.0)))
 
+(define-public erlang-ezlib
+  (package
+    (name "erlang-ezlib")
+    (version "1.0.12")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "ezlib" version))
+              (sha256
+               (base32
+                "1fsf3rbffq47ykm8lp35br8k7wkbqnq2qn0jdsmhl9j2zdal7s9h"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-pc))
+    (home-page "https://github.com/processone/ezlib/")
+    (synopsis "Native zlib driver for Erlang / Elixir")
+    (description "This library focuses on compression / decompression of data
+streams.")
+    (license license:asl2.0)))
+
 (define-public erlang-fast-tls
   (package
     (name "erlang-fast-tls")
