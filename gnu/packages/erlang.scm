@@ -1142,6 +1142,24 @@ Erlang.")
 library for Erlang < 20.")
     (license license:asl2.0)))
 
+(define-public erlang-stringprep
+  (package
+    (name "erlang-stringprep")
+    (version "1.0.28")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "stringprep" version))
+              (sha256
+               (base32
+                "1q382nka19qvxq25xnr8918h749n7wjh13dx4k49kj7yh48pvpv6"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-p1-utils))
+    (home-page "https://hex.pm/packages/stringprep/")
+    (synopsis "Fast Stringprep Erlang / Elixir implementation")
+    (description "This package provides a fast Stringprep Erlang / Elixir
+implementation.")
+    (license (list license:asl2.0 license:tcl/tk))))
+
 (define-public erlang-stun
   (package
     (name "erlang-stun")
