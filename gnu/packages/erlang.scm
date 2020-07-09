@@ -848,6 +848,23 @@ logrotate and syslog.")
     (description "Index tree for MQTT topic filters")
     (license license:asl2.0)))
 
+(define-public erlang-p1-acme
+  (package
+    (name "erlang-p1-acme")
+    (version "1.0.19")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "p1_acme" version))
+              (sha256
+               (base32
+                "032mgg6729bd4dh4npj4abyvl2nkfq36g99v3xfpimd17h126h4h"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-idna erlang-jiffy erlang-jose erlang-yconf))
+    (home-page "https://github.com/processone/p1_acme")
+    (synopsis "Erlang ACME client")
+    (description "This package provides an Erlang ACME client (RFC8555).")
+    (license license:asl2.0)))
+
 (define-public erlang-p1-mysql
   (package
     (name "erlang-p1-mysql")
