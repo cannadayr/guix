@@ -831,6 +831,23 @@ logrotate and syslog.")
     (description "This package provides a library to handle mime-types.")
     (license license:expat)))
 
+(define-public erlang-mqtree
+  (package
+    (name "erlang-mqtree")
+    (version "1.0.15")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "mqtree" version))
+              (sha256
+               (base32
+                "0afqp5ircqqs81faar7zvhi5arcww5cw4mpaxqj2wdrxkcyc8ji9"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-p1-utils))
+    (home-page "https://hex.pm/packages/mqtree/")
+    (synopsis "Index tree for MQTT topic filters")
+    (description "Index tree for MQTT topic filters")
+    (license license:asl2.0)))
+
 (define-public erlang-p1-mysql
   (package
     (name "erlang-p1-mysql")
