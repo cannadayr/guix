@@ -475,6 +475,22 @@ of reusable Erlang components.")
 arguments using the GNU getopt syntax.")
     (license license:bsd-3)))
 
+(define-public erlang-goldrush
+  (package
+    (name "erlang-goldrush")
+    (version "0.1.9")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "goldrush" version))
+              (sha256
+               (base32
+                "1ssck5yr7rnrfwzm55pbyi1scgs1sl1xim75h5sj5czwrwl43jwr"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/DeadZen/goldrush")
+    (synopsis "Erlang event stream processor")
+    (description "Erlang event stream processor")
+    (license license:isc)))
+
 (define-public erlang-hex-core
   (package
     (name "erlang-hex-core")
