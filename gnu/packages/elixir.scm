@@ -127,3 +127,23 @@ being successfully used in web development and the embedded software domain.")
     (description "This package provides a toolkit for terminal user interfaces
 in Elixir.")
     (license license:asl2.0)))
+
+(define-public elixir-distillery
+  (package
+    (name "elixir-distillery")
+    (version "2.1.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "distillery" version))
+              (sha256
+               (base32
+                "1599wan14amzzkw93a9ikk6gql934frva0yrv0qg39k1065h1ixv"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-artificery))
+    (home-page "https://github.com/bitwalker/distillery")
+    (synopsis "Build releases of Mix projects")
+    (description
+     "Distillery is a tool for packaging Elixir applications for
+deployment using OTP releases.  In a nutshell, Distillery produces an artifact,
+a tarball, which contains your application and everything needed to run it.")
+    (license license:expat)))
