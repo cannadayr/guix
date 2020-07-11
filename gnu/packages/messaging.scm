@@ -27,6 +27,7 @@
 ;;; Copyright © 2020, 2021, 2022 Michael Rohleder <mike@rohleder.de>
 ;;; Copyright © 2020, 2022 Raghav Gururajan <rg@raghavgururajan.name>
 ;;; Copyright © 2020, 2021 Robert Karszniewicz <avoidr@posteo.de>
+;;; Copyright © 2020, 2021 Hartmut Goebel <h.goebel@crazy-compilers.com>
 ;;; Copyright © 2020 Giacomo Leidi <goodoldpaul@autistici.org>
 ;;; Copyright © 2021, 2023 Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
 ;;; Copyright © 2021 Vinicius Monego <monego@posteo.net>
@@ -78,7 +79,9 @@
   #:use-module (gnu packages databases)
   #:use-module (gnu packages docbook)
   #:use-module (gnu packages documentation)
+  #:use-module (gnu packages elixir)
   #:use-module (gnu packages enchant)
+  #:use-module (gnu packages erlang)
   #:use-module (gnu packages fontutils)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gettext)
@@ -142,6 +145,7 @@
   #:use-module (gnu packages xml)
   #:use-module (gnu packages xorg)
   #:use-module (guix build-system cmake)
+  #:use-module (guix build-system elixir)
   #:use-module (guix build-system go)
   #:use-module (guix build-system glib-or-gtk)
   #:use-module (guix build-system gnu)
@@ -3520,5 +3524,65 @@ RPC client written in Python.")
 phone numbers (get validity information, reformat them, or extract numbers from
 a text snippet), using @code{libphonenumber}.")
     (license license:asl2.0)))
+
+(define-public ejabberd
+  (package
+    (name "ejabberd")
+    (version "22.5.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "ejabberd" version))
+              (sha256
+               (base32
+                "0nz5113s99790f2y4pwzjzni0di34s6bivr57911fra3bqcfd5zp"))))
+    (build-system elixir-build-system)
+    (inputs (list erlang-base64url
+                  erlang-cache-tab
+                  elixir-distillery
+                  erlang-eimp
+                  erlang-esip
+                  erlang-ezlib
+                  erlang-fast-tls
+                  erlang-fast-xml
+                  erlang-fast-yaml
+                  erlang-idna
+                  erlang-jiffy
+                  erlang-jose
+                  erlang-lager
+                  erlang-mqtree
+                  erlang-p1-acme
+                  erlang-p1-mysql
+                  erlang-p1-oauth2
+                  erlang-p1-pgsql
+                  erlang-p1-utils
+                  erlang-pkix
+                  erlang-stringprep
+                  erlang-stun
+                  erlang-xmpp
+                  erlang-yconf))
+    (home-page "https://www.ejabberd.im/")
+    (synopsis "Distributed, fault-tolerant Jabber/XMPP, MQTT and SIO server")
+    (description
+     "ejabberd is a Jabber/XMPP, MQTT and SIP server written in
+Erlang, featuring:
+
+@itemize
+@item distributed operation with load-balancing across a cluster;
+@item fault-tolerant database replication and storage on multiple nodes,
+      allowing nodes to be added or replaced \"on the fly\";
+@item virtual hosting (several virtual domains can be served using a single
+      ejabberd instance);
+@item web-based administration;
+@item SSL/TLS support;
+@item XMPP compliance;
+@item conferencing via Multi-User Chat;
+@item IRC transport;
+@item Jabber Users Directory, based on users' vCards;
+@item service discovery;
+@item shared roster;
+@item MQTT server;
+@item SIP server.
+@end itemize")
+    (license "GPLv2")))
 
 ;;; messaging.scm ends here
