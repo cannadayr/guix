@@ -624,6 +624,38 @@ evaluating an expression at compile-time and substitute the result as a
 compile-time constant.")
     (license license:asl2.0)))
 
+(define-public erlang-pc
+  (package
+    (name "erlang-pc")
+    (version "1.14.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "pc" version))
+              (sha256
+               (base32
+                "0lrmk905xnvjfsjjmycvhkkrvq1b4slgmvmswqalcwdgar9pwngw"))))
+    (build-system rebar-build-system)
+    (arguments
+     `(#:phases (modify-phases %standard-phases
+                  (add-after 'unpack 'patch-path
+                    (lambda* (#:key inputs #:allow-other-keys)
+                      (let ((gcc (assoc-ref inputs "gcc")))
+                        (substitute* "src/pc_port_env.erl"
+                          (("(get_tool.* \")cc(\"\\)})" _ pre post) (string-append
+                                                                     pre "gcc"
+                                                                     post)))
+                        (substitute* "src/pc_util.erl"
+                          (("(^ +Compiler = .* \")cc(\";)" _ pre post) (string-append
+                                                                        pre
+                                                                        gcc
+                                                                        "/bin/gcc"
+                                                                        post)))))))))
+    (home-page "https://github.com/blt/port_compiler")
+    (synopsis "Rebar3 port compiler for native code")
+    (description "This package provides a rebar3 port compiler for native
+code.")
+    (license license:expat)))
+
 (define-public erlang-proper
   (package
     (name "erlang-proper")
