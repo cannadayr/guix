@@ -332,4 +332,24 @@ nodes using CSS selectors.")
     (synopsis "Documentation generation tool for Elixir")
     (description "This package provides a documentation generation tool for
 Elixir.")
+
+(define-public elixir-extractly
+  (package
+    (name "elixir-extractly")
+    (version "0.5.3")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "extractly" version))
+              (sha256
+               (base32
+                "00smi3mbdsyjfyb8lwj2bdz3pjzy0dpqdf2vwwvpjxpvbwl7m3w5"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/robertdober/extractly")
+    (synopsis "Easy access to information inside the templates rendered by
+@code{mix xtra}")
+    (description
+     "This package provides easy access to information inside the
+templates rendered by @code{mix xtra}.  The Extractly module gives easy access
+to Elixir metainformation of the application using the extractly package,
+notably, module and function documentation.")
     (license license:asl2.0)))
