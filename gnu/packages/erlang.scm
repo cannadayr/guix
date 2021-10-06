@@ -877,3 +877,21 @@ rebar3.")
 compiler.  Code produced with it is compatible with \"normal\" Erlang
  code.  An LFE evaluator and shell is also included.")
     (license license:asl2.0)))
+
+(define-public erlang-hut
+  (package
+    (name "erlang-hut")
+    (version "1.3.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "hut" version))
+              (sha256
+               (base32
+                "0qxmkazkakrmvd9n1im4ad43wxgh189fqcd9lfsz58fqan2x45by"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/tolbrino/hut")
+    (synopsis "Helper library for making Erlang libraries logging framework
+agnostic")
+    (description "This package provides a helper library for making Erlang
+libraries logging framework agnostic.")
+    (license license:expat)))
