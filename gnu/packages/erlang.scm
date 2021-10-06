@@ -1612,3 +1612,26 @@ optimized for completeness rather than speed. No value is ignored, they are
 all returned.")
     (license license:isc)))
 
+(define-public erlang-cowboy
+  (package
+    (name "erlang-cowboy")
+    (version "2.9.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "cowboy" version))
+              (sha256
+               (base32
+                "1phv0a1zbgk7imfgcm0dlacm7hbjcdygb0pqmx4s26jf9f9rywic"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-cowlib erlang-ranch))
+    (home-page "https://github.com/ninenines/cowboy")
+    (synopsis "Small, fast, modern HTTP server for Erlang/OTP")
+    (description
+     "Cowboy aims to provide a complete HTTP stack in a small code
+base.  It is optimized for low latency and low memory usage, in part because
+it uses binary strings.
+
+Cowboy provides routing capabilities, selectively dispatching requests to
+handlers written in Erlang.  It can easily be embedded in any other
+application.")
+    (license license:isc)))
