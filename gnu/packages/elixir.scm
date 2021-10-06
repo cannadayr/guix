@@ -278,3 +278,20 @@ language.")
     (description "This package provides a simple and fast library for
 text-based parser combinators.")
     (license license:asl2.0)))
+
+(define-public elixir-html-entities
+  (package
+    (name "elixir-html-entities")
+    (version "0.5.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "html_entities" version))
+              (sha256
+               (base32
+                "1k7xyj0q38ms3n5hbn782pa6w1vgd6biwlxr4db6319l828a6fy5"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/martinsvalin/html_entities")
+    (synopsis "Decode and encode HTML entities in a string")
+    (description "This package provides a Elixir module to decode and encode
+HTML entities in a string.")
+    (license license:expat)))
