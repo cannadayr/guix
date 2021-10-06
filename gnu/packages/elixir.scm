@@ -226,6 +226,24 @@ with Elixir.")
 Pygments.")
     (license license:bsd-2)))
 
+(define-public elixir-makeup-erlang
+  (package
+    (name "elixir-makeup-erlang")
+    (version "0.1.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "makeup_erlang" version))
+              (sha256
+               (base32
+                "00dnn8g8sr8clgyhnihqjw6wlikml6499ff5va8q8hsi53ng7v20"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-makeup))
+    (home-page "https://github.com/elixir-makeup/makeup_erlang")
+    (synopsis "Erlang lexer for the Makeup syntax highlighter")
+    (description "This package provides a makeup lexer for the Erlang
+language.")
+    (license license:bsd-2)))  ;; Unclear which "BSD" license
+
 (define-public elixir-nimble-parsec
   (package
     (name "elixir-nimble-parsec")
