@@ -1091,3 +1091,22 @@ agnostic")
     (description "This package provides a helper library for making Erlang
 libraries logging framework agnostic.")
     (license license:expat)))
+
+(define-public erlang-ranch
+  (package
+    (name "erlang-ranch")
+    (version "2.1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "ranch" version))
+              (sha256
+               (base32
+                "1ivhf5jn1bc0crgvj05fi3cavdmpcb5i9c50dyvj3kfjcmngm7w2"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/ninenines/ranch")
+    (synopsis "Socket acceptor pool for TCP protocols")
+    (description
+     "Ranch aims to provide everything you need to accept TCP
+connections with a small code base and low latency while being easy to use
+directly as an application or to embed into your own.")
+    (license license:isc)))
