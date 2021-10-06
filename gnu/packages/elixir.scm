@@ -190,3 +190,20 @@ is intended to be used as a library (just call Earmark.as_html), but can also
 be used as a command-line tool (run mix escript.build first).  The Output
 generation is pluggable.")
     (license license:asl2.0)))
+
+(define-public elixir-eqc-ex
+  (package
+    (name "elixir-eqc-ex")
+    (version "1.4.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "eqc_ex" version))
+              (sha256
+               (base32
+                "0f0gsp56shs09qdrqhjs7kkinzxh6qhk7qzpglwaak32a61yciv5"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/Quviq/eqc_ex")
+    (synopsis "Wrappers to facilitate using Quviq QuickCheck with Elixir")
+    (description "This package defines wrappers for using Quviq QuickCheck
+with Elixir.")
+    (license license:bsd-3)))
