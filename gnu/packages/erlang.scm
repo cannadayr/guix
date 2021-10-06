@@ -1569,3 +1569,23 @@ difference algorithm by Eugene W. Myers.")
     (synopsis "Pretty EUnit test formatters")
     (description "Pretty EUnit test formatters")
     (license license:expat)))
+
+(define-public erlang-exometer-core
+  (package
+    (name "erlang-exometer-core")
+    (version "1.6.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "exometer_core" version))
+              (sha256
+               (base32
+                "0svdd9gzdgw80szrpf3c3xxsq9jd8mwlqn8vyra3i6zjc6lz06pc"))))
+    (build-system rebar-build-system)
+    (arguments
+     `(#:tests? #f)) ;TODO: Tests fail
+    (inputs (list erlang-folsom erlang-hut erlang-meck erlang-parse-trans
+                  erlang-setup))
+    (home-page "https://github.com/Feuerlabs/exometer_core")
+    (synopsis "Code instrumentation and metrics collection")
+    (description "Code instrumentation and metrics collection package.")
+    (license license:mpl2.0)))
