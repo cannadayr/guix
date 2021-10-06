@@ -147,3 +147,25 @@ in Elixir.")
 deployment using OTP releases.  In a nutshell, Distillery produces an artifact,
 a tarball, which contains your application and everything needed to run it.")
     (license license:expat)))
+
+(define-public elixir-earmark-parser
+  (package
+    (name "elixir-earmark-parser")
+    (version "1.4.26")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "earmark_parser" version))
+              (sha256
+               (base32
+                "1g5ajj6l4j1nnkd6vcnhp8vk6kzn04f62xh68z2m434aky4n1m28"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/RobertDober/earmark_parser")
+    (synopsis "Pure Elixir Markdown Parser")
+    (description
+     "Earmark AST the parser and AST Generator for Dave Thomas'
+Earmark.  The parser generates an Abstract Syntax Tree from Markdown.
+
+The original Earmark will still provide the HTML Transformation and
+the CLI, however its Scanner, Parser and AST Renderer have been
+extracted into this library.")
+    (license license:asl2.0)))
