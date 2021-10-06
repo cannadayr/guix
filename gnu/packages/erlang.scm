@@ -43,6 +43,7 @@
   #:use-module (gnu packages image)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages perl)
+  #:use-module (gnu packages serialization)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages tls)
   #:use-module (gnu packages wxwidgets))
@@ -618,6 +619,28 @@ It supports:
 @item XML stream parsing: Suitable for large XML document, or infinite network
 XML stream like XMPP.
 @end itemize")
+    (license license:asl2.0)))
+
+(define-public erlang-fast-yaml
+  (package
+    (name "erlang-fast-yaml")
+    (version "1.0.33")
+    (source (origin
+              ;; Source tarball on hex.pm lacks "tests" directory
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/processone/fast_yaml")
+                    (commit version)))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1mws3rgd83s1wfx8gi3bwnj93486z1rgf6k85sx93ynnk1xfl989"))))
+    (build-system rebar-build-system)
+    (inputs (list libyaml erlang-p1-utils))
+    (home-page "https://github.com/processone/fast_yaml/")
+    (synopsis "Fast YAML native library for Erlang / Elixir")
+    (description "``Fast YAML'' is an Erlang wrapper for libyaml C library.
+It is designed to be fast and efficient.")
     (license license:asl2.0)))
 
 (define-public erlang-getopt
