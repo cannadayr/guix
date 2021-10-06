@@ -169,3 +169,24 @@ The original Earmark will still provide the HTML Transformation and
 the CLI, however its Scanner, Parser and AST Renderer have been
 extracted into this library.")
     (license license:asl2.0)))
+
+(define-public elixir-earmark
+  (package
+    (name "elixir-earmark")
+    (version "1.4.26")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "earmark" version))
+              (sha256
+               (base32
+                "1ibqz982fvzir4fwnbnwqa0db73cy1chjgzk59ly1v3bnn11h8z1"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-earmark-parser))
+    (home-page "https://github.com/pragdave/earmark")
+    (synopsis "Pure Elixir Markdown converter")
+    (description
+     "This package provides a pure-Elixir Markdown converter.  It
+is intended to be used as a library (just call Earmark.as_html), but can also
+be used as a command-line tool (run mix escript.build first).  The Output
+generation is pluggable.")
+    (license license:asl2.0)))
