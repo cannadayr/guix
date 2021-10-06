@@ -428,3 +428,23 @@ results to coveralls.io through the JSON API.")
 conformant AST Nodes.  Its main purpose is to remove boilerplate code from
 Earmark and EarmarkParser tests.")
     (license license:asl2.0)))
+
+(define-public elixir-erlex
+  (package
+    (name "elixir-erlex")
+    (version "0.2.6")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "erlex" version))
+              (sha256
+               (base32
+                "0x8c1j62y748ldvlh46sxzv5514rpzm809vxn594vd7y25by5lif"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/asummers/erlex")
+    (synopsis "Convert Erlang style structs and error messages to equivalent
+Elixir")
+    (description
+     "This package provides a module to convert Erlang style
+structs and error messages to equivalent Elixir.  Useful for pretty printing
+things like Dialyzer errors and Observer state.")
+    (license license:asl2.0)))
