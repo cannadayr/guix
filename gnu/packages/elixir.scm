@@ -409,3 +409,22 @@ coverage statistics, with the option to post to coveralls.io service.  It uses
 Erlang's cover to generate coverage information, and posts the test coverage
 results to coveralls.io through the JSON API.")
     (license license:expat)))
+
+(define-public elixir-earmark-ast-dsl
+  (package
+    (name "elixir-earmark-ast-dsl")
+    (version "0.3.6")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "earmark_ast_dsl" version))
+              (sha256
+               (base32
+                "01sdhb1jh6a3h918gcx7nrdn2b3g0di682zyjgbl666l6447kk27"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/robertdober/earmark_ast_dsl")
+    (synopsis "Toolset to generate EarmarkParser conformant AST Nodes")
+    (description
+     "@code{EarmarkAstDsl} is a toolset to generate EarmarkParser
+conformant AST Nodes.  Its main purpose is to remove boilerplate code from
+Earmark and EarmarkParser tests.")
+    (license license:asl2.0)))
