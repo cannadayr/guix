@@ -594,6 +594,32 @@ Elixir.  It is based on OpenSSL, a proven and efficient TLS implementation.
 It is designed for efficiency, speed and compliance.")
     (license license:asl2.0)))
 
+(define-public erlang-fast-xml
+  (package
+    (name "erlang-fast-xml")
+    (version "1.1.49")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "fast_xml" version))
+              (sha256
+               (base32
+                "14rmi1vxr43z45199awapwbmqiz2zqvnc0v1d6aih23l5x6hdnh1"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-p1-utils))
+    (home-page "https://hex.pm/packages/fast_xml/")
+    (synopsis "Fast Expat-based Erlang / Elixir XML parsing library")
+    (description
+     "This package provides a fast, Expat based Erlang XML parsing
+and manipulation library, with a strong focus on XML stream parsing from
+network.
+It supports:
+@itemize
+@item Full XML structure parsing: Suitable for small but complete XML chunks.
+@item XML stream parsing: Suitable for large XML document, or infinite network
+XML stream like XMPP.
+@end itemize")
+    (license license:asl2.0)))
+
 (define-public erlang-getopt
   (package
     (name "erlang-getopt")
