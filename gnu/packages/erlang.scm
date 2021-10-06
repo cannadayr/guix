@@ -700,6 +700,37 @@ arguments using the GNU getopt syntax.")
     (description "Erlang event stream processor")
     (license license:isc)))
 
+(define-public erlang-hackney
+  (package
+    (name "erlang-hackney")
+    (version "1.18.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "hackney" version))
+              (sha256
+               (base32
+                "13hja14kig5jnzcizpdghj68i88f0yd9wjdfjic9nzi98kzxmv54"))))
+    (build-system rebar-build-system)
+    (arguments
+     `(#:phases (modify-phases %standard-phases
+                  (add-before 'build 'configure-compiler
+                    (lambda _
+                      (setenv "DEBUG" "1")
+                      (setenv "HOME" "/tmp") #t)))))
+    (inputs (list erlang-certifi
+                  erlang-cowboy
+                  erlang-idna
+                  erlang-jsone
+                  erlang-metrics
+                  erlang-mimerl
+                  erlang-parse-trans
+                  erlang-ssl-verify-fun
+                  erlang-unicode-util-compat))
+    (home-page "https://github.com/benoitc/hackney")
+    (synopsis "Simple HTTP client")
+    (description "This package provides a HTTP client library for Erlang.")
+    (license license:asl2.0)))
+
 (define-public erlang-hex-core
   (package
     (name "erlang-hex-core")
