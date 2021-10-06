@@ -260,6 +260,23 @@ files.")
 Mustache template engine")
     (license license:expat)))
 
+(define-public erlang-bear
+  (package
+    (name "erlang-bear")
+    (version "1.0.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "bear" version))
+              (sha256
+               (base32
+                "1nsri73b50n5v1a8252mm8car84j2b53bq7alq6zz16z3a86fyqm"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/folsom-project/bear")
+    (synopsis "Statistics functions for Erlang")
+    (description "This package provides a set of statistics functions for
+Erlang.")
+    (license license:asl2.0)))
+
 (define-public erlang-certifi
   (package
     (name "erlang-certifi")
