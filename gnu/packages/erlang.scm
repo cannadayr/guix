@@ -585,6 +585,22 @@ Group.")
     (description "An Erlang library for encoding and decoding JSON data.")
     (license license:expat)))
 
+(define-public erlang-mimerl
+  (package
+    (name "erlang-mimerl")
+    (version "1.2.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "mimerl" version))
+              (sha256
+               (base32
+                "08wkw73dy449n68ssrkz57gikfzqk3vfnf264s31jn5aa1b5hy7j"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/benoitc/mimerl")
+    (synopsis "Library to handle mimetypes")
+    (description "This package provides a library to handle mime-types.")
+    (license license:expat)))
+
 (define-public erlang-parse-trans
   (package
     (name "erlang-parse-trans")
