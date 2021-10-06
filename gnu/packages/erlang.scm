@@ -1110,3 +1110,22 @@ libraries logging framework agnostic.")
 connections with a small code base and low latency while being easy to use
 directly as an application or to embed into your own.")
     (license license:isc)))
+
+(define-public erlang-setup
+  (package
+    (name "erlang-setup")
+    (version "2.1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "setup" version))
+              (sha256
+               (base32
+                "1ibif0vnf1g16shn09jjfa13k4h9vdxgrbyajvm5py0cixbp5l7g"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/uwiger/setup")
+    (synopsis "Generic setup application for Erlang-based systems")
+    (description
+     "This utility offers a framework for initializing and
+configuring a system, with a set of conventions allowing each component to
+provide callbacks for different steps in the installation procedure.")
+    (license license:asl2.0)))
