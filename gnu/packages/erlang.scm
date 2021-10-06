@@ -1589,3 +1589,26 @@ difference algorithm by Eugene W. Myers.")
     (synopsis "Code instrumentation and metrics collection")
     (description "Code instrumentation and metrics collection package.")
     (license license:mpl2.0)))
+
+(define-public erlang-cowlib
+  (package
+    (name "erlang-cowlib")
+    (version "2.11.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "cowlib" version))
+              (sha256
+               (base32
+                "05c4bsyxgv01nnah2may9qc1x27pvp9pyni1byrvcv5crgy4nvng"))))
+    (build-system rebar-build-system)
+    (arguments
+     `(#:tests? #f)) ;TODO
+    (home-page "https://github.com/ninenines/cowlib")
+    (synopsis "Support library for manipulating Web protocols")
+    (description
+     "Cowlib provides libraries for parsing and building messages
+for various Web protocols, including HTTP/1.1, HTTP/2 and Websocket.  It is
+optimized for completeness rather than speed. No value is ignored, they are
+all returned.")
+    (license license:isc)))
+
