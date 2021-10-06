@@ -353,3 +353,20 @@ templates rendered by @code{mix xtra}.  The Extractly module gives easy access
 to Elixir metainformation of the application using the extractly package,
 notably, module and function documentation.")
     (license license:asl2.0)))
+
+(define-public elixir-decimal
+  (package
+    (name "elixir-decimal")
+    (version "2.0.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "decimal" version))
+              (sha256
+               (base32
+                "0xzm8hfhn8q02rmg8cpgs68n5jz61wvqg7bxww9i1a6yanf6wril"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/ericmj/decimal")
+    (synopsis "Arbitrary precision decimal arithmetic")
+    (description "THis package provides arbitrary precision decimal arithmetic
+for Elixir.")
+    (license license:asl2.0)))
