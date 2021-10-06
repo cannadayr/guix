@@ -399,6 +399,22 @@ outputs you want to be readable around all that noise they contain.")
 Markdown.")
     (license license:asl2.0)))
 
+(define-public erlang-erlang-color
+  (package
+    (name "erlang-erlang-color")
+    (version "1.0.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "erlang_color" version))
+              (sha256
+               (base32
+                "0f707vxihn3f9m3zxal38ajcihnfcwms77jcax0gbzn8i7jya5vb"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/julianduque/erlang-color")
+    (synopsis "ANSI colors for Erlang")
+    (description "This package provides ANSI colors for Erlang.")
+    (license license:expat)))
+
 (define-public erlang-erlware-commons
   (package
     (name "erlang-erlware-commons")
