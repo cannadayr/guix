@@ -314,3 +314,22 @@ selectors")
     (description "@code{Floki} is a simple HTML parser that enables search for
 nodes using CSS selectors.")
     (license license:expat)))
+
+(define-public elixir-ex-doc
+  (package
+    (name "elixir-ex-doc")
+    (version "0.28.4")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "ex_doc" version))
+              (sha256
+               (base32
+                "1vgqqf5cf0cw18aw593ll9qk9bsqm6hvvf6xr24iv49lvl1x11dz"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-earmark-parser elixir-makeup-elixir
+                  elixir-makeup-erlang))
+    (home-page "https://github.com/elixir-lang/ex_doc")
+    (synopsis "Documentation generation tool for Elixir")
+    (description "This package provides a documentation generation tool for
+Elixir.")
+    (license license:asl2.0)))
