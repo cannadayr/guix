@@ -1129,3 +1129,20 @@ directly as an application or to embed into your own.")
 configuring a system, with a set of conventions allowing each component to
 provide callbacks for different steps in the installation procedure.")
     (license license:asl2.0)))
+
+(define-public erlang-tdiff
+  (package
+    (name "erlang-tdiff")
+    (version "0.1.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "tdiff" version))
+              (sha256
+               (base32
+                "0xbq7p9ii2kp49ms1kylj92ih2jiwvqwimb8jy4aalljz5lf3hp0"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/tomas-abrahamsson/tdiff")
+    (synopsis "Difference library")
+    (description "This package provides an Erlang implementation of the O(ND)
+difference algorithm by Eugene W. Myers.")
+    (license license:lgpl2.0+)))
