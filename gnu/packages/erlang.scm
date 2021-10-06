@@ -534,6 +534,30 @@ of reusable Erlang components.")
     (description "This package provides a better output for Erlang eunits.")
     (license license:asl2.0)))
 
+(define-public erlang-fast-tls
+  (package
+    (name "erlang-fast-tls")
+    (version "1.1.15")
+    (source (origin
+              ;; Source tarball on hex.pm lacks "tests" directory
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/processone/fast_tls")
+                    (commit version)))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "14a7hd34vh30zwv9dvqjsmsdvra7sgdn0aq4vmblc8r1ayhlc74k"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-p1-utils openssl))
+    (home-page "https://github.com/processone/fast_tls")
+    (synopsis "TLS / SSL OpenSSL-based native driver for Erlang / Elixir")
+    (description
+     "Fast TLS is a native TLS / SSL driver for Erlang /
+Elixir.  It is based on OpenSSL, a proven and efficient TLS implementation.
+It is designed for efficiency, speed and compliance.")
+    (license license:asl2.0)))
+
 (define-public erlang-getopt
   (package
     (name "erlang-getopt")
