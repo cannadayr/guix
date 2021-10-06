@@ -1506,3 +1506,25 @@ provide callbacks for different steps in the installation procedure.")
     (description "This package provides an Erlang implementation of the O(ND)
 difference algorithm by Eugene W. Myers.")
     (license license:lgpl2.0+)))
+
+(define-public erlang-unite
+  (package
+    (name "erlang-unite")
+    (version "0.3.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "unite" version))
+              (sha256
+               (base32
+                "1dg2pynspba6z25bvriinrsjxal5maqzg90vzsaw2wyc3rhzr098"))))
+    (build-system rebar-build-system)
+    (arguments
+     `(#:phases (modify-phases %standard-phases
+                  (add-before 'build 'symlink-pkg-name
+                    (lambda _
+                      (symlink "erlang_color" "_checkouts/color") #t)))))
+    (inputs (list erlang-erlang-color erlang-tdiff))
+    (home-page "https://github.com/eproxus/unite")
+    (synopsis "Pretty EUnit test formatters")
+    (description "Pretty EUnit test formatters")
+    (license license:expat)))
