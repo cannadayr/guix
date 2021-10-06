@@ -856,6 +856,24 @@ logrotate and syslog.")
     (description "This package provides a mocking framework for Erlang.")
     (license license:asl2.0)))
 
+(define-public erlang-metrics
+  (package
+    (name "erlang-metrics")
+    (version "2.5.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "metrics" version))
+              (sha256
+               (base32
+                "0jviygsq88x6hymrhrg1zwg1wp71ccmpk6my2xyykgf3r0w1j1mf"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-exometer-core))
+    (home-page "https://github.com/benoitc/erlang-metrics")
+    (synopsis "Generic interface to different metrics systems in Erlang")
+    (description "This package provides a generic interface to different
+metrics systems in Erlang.")
+    (license license:bsd-3)))
+
 (define-public erlang-mimerl
   (package
     (name "erlang-mimerl")
