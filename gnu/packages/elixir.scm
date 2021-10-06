@@ -295,3 +295,22 @@ text-based parser combinators.")
     (description "This package provides a Elixir module to decode and encode
 HTML entities in a string.")
     (license license:expat)))
+
+(define-public elixir-floki
+  (package
+    (name "elixir-floki")
+    (version "0.32.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "floki" version))
+              (sha256
+               (base32
+                "18w1qv9syz464914d61q3imryqgwxqbc0g0ygczlly2a7rqirffl"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-html-entities))
+    (home-page "https://github.com/philss/floki")
+    (synopsis "Simple HTML parser that enables search for nodes using CSS
+selectors")
+    (description "@code{Floki} is a simple HTML parser that enables search for
+nodes using CSS selectors.")
+    (license license:expat)))
