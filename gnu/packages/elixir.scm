@@ -207,3 +207,20 @@ generation is pluggable.")
     (description "This package defines wrappers for using Quviq QuickCheck
 with Elixir.")
     (license license:bsd-3)))
+
+(define-public elixir-nimble-parsec
+  (package
+    (name "elixir-nimble-parsec")
+    (version "1.1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "nimble_parsec" version))
+              (sha256
+               (base32
+                "063ibzqf7jijwqbj211sr747cmncnb4lryqjfa577yrcv44hc3f1"))))
+    (build-system elixir-build-system)
+    (home-page "https://github.com/dashbitco/nimble_parsec")
+    (synopsis "Simple and fast library for text-based parser combinators")
+    (description "This package provides a simple and fast library for
+text-based parser combinators.")
+    (license license:asl2.0)))
