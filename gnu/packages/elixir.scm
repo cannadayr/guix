@@ -448,3 +448,21 @@ Elixir")
 structs and error messages to equivalent Elixir.  Useful for pretty printing
 things like Dialyzer errors and Observer state.")
     (license license:asl2.0)))
+
+(define-public elixir-dialyxir
+  (package
+    (name "elixir-dialyxir")
+    (version "1.1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "dialyxir" version))
+              (sha256
+               (base32
+                "16hbdhkbqq69v452vx3c0d26mmadkmwr6nvdpr72c5azqi4qxsh7"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-erlex))
+    (home-page "https://github.com/jeremyjh/dialyxir")
+    (synopsis "Mix tasks to simplify use of Dialyzer in Elixir projects")
+    (description "This package provides @emph{mix} tasks to simplify use of
+Dialyzer in Elixir projects.")
+    (license license:asl2.0)))
