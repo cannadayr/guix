@@ -208,6 +208,24 @@ generation is pluggable.")
 with Elixir.")
     (license license:bsd-3)))
 
+(define-public elixir-makeup
+  (package
+    (name "elixir-makeup")
+    (version "1.1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "makeup" version))
+              (sha256
+               (base32
+                "19jpprryixi452jwhws3bbks6ki3wni9kgzah3srg22a3x8fsi8a"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-nimble-parsec))
+    (home-page "https://github.com/elixir-makeup/makeup")
+    (synopsis "Syntax highlighter for source code in the style of Pygments")
+    (description "Syntax highlighter for source code in the style of
+Pygments.")
+    (license license:bsd-2)))
+
 (define-public elixir-nimble-parsec
   (package
     (name "elixir-nimble-parsec")
