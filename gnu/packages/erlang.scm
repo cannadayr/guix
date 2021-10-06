@@ -815,6 +815,23 @@ erlang application that plays nicely with traditional UNIX logging tools like
 logrotate and syslog.")
     (license license:asl2.0)))
 
+(define-public erlang-meck
+  (package
+    (name "erlang-meck")
+    (version "0.9.2")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "meck" version))
+              (sha256
+               (base32
+                "09jq0jrsd3dwzjlnwqjv6m9r2rijgiv57yja6jl41p2p2db4yd41"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-unite))
+    (home-page "https://github.com/eproxus/meck")
+    (synopsis "Mocking framework for Erlang")
+    (description "This package provides a mocking framework for Erlang.")
+    (license license:asl2.0)))
+
 (define-public erlang-mimerl
   (package
     (name "erlang-mimerl")
