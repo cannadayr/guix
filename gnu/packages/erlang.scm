@@ -805,6 +805,23 @@ testing of stateful systems.")
     (description "This package provides an Erlang providers library.")
     (license license:asl2.0)))
 
+(define-public erlang-provider-asn1
+  (package
+    (name "erlang-provider-asn1")
+    (version "0.3.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "provider_asn1" version))
+              (sha256
+               (base32
+                "01gvpwdlkpmvzi280rn66f5ijlvap6k368yzpb0mmlv2hrcsbrrj"))))
+    (build-system rebar-build-system)
+    (home-page "https://github.com/knusbaum/provider_asn1/")
+    (synopsis "Compile ASN.1 with Rebar3")
+    (description
+     "This package provides a plugin to compile ASN.1 with Rebar3.")
+    (license license:expat)))
+
 (define-public erlang-relx
   (package
     (name "erlang-relx")
