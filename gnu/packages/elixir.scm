@@ -388,3 +388,24 @@ for Elixir.")
     (description "This package provides a fast JSON parser and generator in
 pure Elixir.")
     (license license:asl2.0)))
+
+(define-public elixir-excoveralls
+  (package
+    (name "elixir-excoveralls")
+    (version "0.14.5")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "excoveralls" version))
+              (sha256
+               (base32
+                "0khzdvr391zdcg1nrhbsy4059c51p2s177hmjj5y99p922zskd79"))))
+    (build-system elixir-build-system)
+    (inputs (list erlang-hackney elixir-jason))
+    (home-page "https://github.com/parroty/excoveralls")
+    (synopsis "Coverage report tool for Elixir with coveralls.io integration")
+    (description
+     "This package provides an Elixir library that reports test
+coverage statistics, with the option to post to coveralls.io service.  It uses
+Erlang's cover to generate coverage information, and posts the test coverage
+results to coveralls.io through the JSON API.")
+    (license license:expat)))
