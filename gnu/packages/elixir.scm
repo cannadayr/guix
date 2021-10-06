@@ -370,3 +370,21 @@ notably, module and function documentation.")
     (description "THis package provides arbitrary precision decimal arithmetic
 for Elixir.")
     (license license:asl2.0)))
+
+(define-public elixir-jason
+  (package
+    (name "elixir-jason")
+    (version "1.3.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "jason" version))
+              (sha256
+               (base32
+                "1b620901micds3q2pfnwcp861hjiwx0wpyahgvnf142k4m8izz2k"))))
+    (build-system elixir-build-system)
+    (inputs (list elixir-decimal))
+    (home-page "https://github.com/michalmuskala/jason")
+    (synopsis "Fast JSON parser and generator in pure Elixir")
+    (description "This package provides a fast JSON parser and generator in
+pure Elixir.")
+    (license license:asl2.0)))
