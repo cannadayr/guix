@@ -643,6 +643,30 @@ XML stream like XMPP.
 It is designed to be fast and efficient.")
     (license license:asl2.0)))
 
+(define-public erlang-folsom
+  (package
+    (name "erlang-folsom")
+    (version "1.0.0")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "folsom" version))
+              (sha256
+               (base32
+                "03mvxvrpfl800x896bnxq2p7x33v98i8iqa3zi69wkz9g1rbjsnx"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-bear erlang-meck erlang-proper))
+    (home-page "https://github.com/folsom-project/folsom")
+    (synopsis "Erlang based metrics system")
+    (description
+     "Folsom is an Erlang based metrics system inspired by Coda
+Hale's metrics.  The metrics API's purpose is to collect realtime metrics from
+your Erlang applications and publish them via Erlang APIs and output
+plugins. @code{folsom} is not a persistent store.  There are 6 types of
+metrics: counters, gauges, histograms (and timers), histories, meter_readers
+and meters.  Metrics can be created, read and updated via the folsom_metrics
+module.")
+    (license license:asl2.0)))
+
 (define-public erlang-getopt
   (package
     (name "erlang-getopt")
