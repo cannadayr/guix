@@ -746,6 +746,23 @@ Encryption (JOSE).  JOSE is a set of standards established by the JOSE Working
 Group.")
     (license license:expat)))
 
+(define-public erlang-idna
+  (package
+    (name "erlang-idna")
+    (version "6.1.1")
+    (source (origin
+              (method url-fetch)
+              (uri (hexpm-uri "idna" version))
+              (sha256
+               (base32
+                "1sjcjibl34sprpf1dgdmzfww24xlyy34lpj7mhcys4j4i6vnwdwj"))))
+    (build-system rebar-build-system)
+    (inputs (list erlang-unicode-util-compat))
+    (home-page "https://hex.pm/packages/idna/")
+    (synopsis "Pure Erlang IDNA implementation")
+    (description "This package provides a pure Erlang IDNA implementation.")
+    (license license:expat)))
+
 (define-public erlang-jsone
   (package
     (name "erlang-jsone")
