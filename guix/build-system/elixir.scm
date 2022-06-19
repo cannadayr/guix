@@ -20,35 +20,24 @@
 (define-module (guix build-system elixir)
   #:use-module (guix store)
   #:use-module (guix utils)
+  #:use-module (guix gexp)
   #:use-module (guix packages)
-  #:use-module (guix derivations)
+  #:use-module (guix monads)
   #:use-module (guix search-paths)
   #:use-module (guix build-system)
   #:use-module (guix build-system gnu)
   #:use-module (ice-9 match)
   #:use-module (srfi srfi-26)
-  ;; #:use-module ((guix build-system rebar)
-  ;;               #:select ((hexpm-uri . hexpm-uri)))
+  #:use-module ((guix build-system rebar)
+                #:select ((hexpm-uri . hexpm-uri)))
+  #:re-export (hexpm-uri)
   #:export (%elixir-build-system-modules
-            hexpm-uri
             elixir-build
             elixir-build-system))
 
 ;;
 ;; Standard build procedure for Elixir packages using Mix.
 ;;
-
-(define %hexpm-repo-url
-  (make-parameter "https://repo.hex.pm"))
-
-(define hexpm-package-url
-  (string-append (%hexpm-repo-url) "/tarballs/"))
-
-(define (hexpm-uri name version)
-  "Return a URI string for the package hosted at hex.pm corresponding to NAME
-and VERSION."
-  (string-append hexpm-package-url name "-" version ".tar"))
-
 
 (define %elixir-build-system-modules
   ;; Build-side modules imported by default.
@@ -68,7 +57,7 @@ and VERSION."
                 #:rest arguments)
   "Return a bag for NAME."
   (define private-keywords
-    '(#:source #:target #:rebar #:inputs #:native-inputs))
+    '(#:source #:target #:mix #:inputs #:native-inputs))
 
   (and (not target)                               ;XXX: no cross-compilation
        (bag
@@ -77,73 +66,69 @@ and VERSION."
          (host-inputs `(,@(if source
                               `(("source" ,source))
                               '())
-                        ,@inputs
+                        ,@inputs))
+         (build-inputs `(("elixir" ,elixir)
+                         ,@native-inputs
                         ;; Keep the standard inputs of 'gnu-build-system'.
                         ,@(standard-packages)))
-         (build-inputs `(("elixir" ,elixir)
-                         ,@native-inputs))
          (outputs outputs)
          (build elixir-build)
          (arguments (strip-keyword-arguments private-keywords arguments)))))
 
 (define* (elixir-build store name inputs
                        #:key
+                       guile source
+                       (mix-flags ''())
                        (tests? #t)
                        (test-target "test")
-                       (configure-flags ''())
-                       (make-flags ''())
+                       ;; (make-flags ''())
                        (build-target "compile")
-                       (build-environment "prod")
-                       ;; TODO: pkg-name
+                       (build-environment "prod") ;; install-profile ??
+                       ;; TODO: install-name  ; default: based on guix package name
                        (phases '(@ (guix build elixir-build-system)
                                    %standard-phases))
                        (outputs '("out"))
                        (search-paths '())
+                       (native-search-paths '())
                        (system (%current-system))
-                       (guile #f)
                        (imported-modules %elixir-build-system-modules)
                        (modules '((guix build elixir-build-system)
                                   (guix build utils))))
   "Build SOURCE with INPUTS."
+
   (define builder
-    `(begin
-       (use-modules ,@modules)
-       (elixir-build #:name ,name
-                     #:source ,(match (assoc-ref inputs "source")
-                                      (((? derivation? source))
-                                       (derivation->output-path source))
-                                      ((source)
-                                       source)
-                                      (source
-                                       source))
-                     #:make-flags ,make-flags
-                     #:configure-flags ,configure-flags
-                     #:system ,system
+    (with-imported-modules imported-modules
+      #~(begin
+          (use-modules #$@(sexp->gexp modules))
+
+          #$(with-build-variables inputs outputs
+              #~(elixir-build #:source #+source
+                     #:system #$system
+                     #:name ,name
+                     #:mix-flags ,mix-flags
                      #:tests? ,tests?
                      #:test-target ,test-target
                      #:build-target ,build-target
                      #:build-environment ,build-environment
-                     #:phases ,phases
+                     ;; TODO: #:install-name #$install-name
+                      #:phases #$(if (pair? phases)
+                                     (sexp->gexp phases)
+                                     phases)
                      #:outputs %outputs
-                     #:search-paths ',(map search-path-specification->sexp
-                                           search-paths)
-                     #:inputs %build-inputs)))
+                     #:search-paths '#$(sexp->gexp
+                                        (map search-path-specification->sexp
+                                             search-paths))
+                     #:inputs %build-inputs)))))
 
-  (define guile-for-build
-    (match guile
-      ((? package?)
-       (package-derivation store guile system #:graft? #f))
-      (#f                               ; the default
-       (let* ((distro (resolve-interface '(gnu packages commencement)))
-              (guile  (module-ref distro 'guile-final)))
-         (package-derivation store guile system #:graft? #f)))))
-
-  (build-expression->derivation store name builder
-                                #:inputs inputs
-                                #:system system
-                                #:modules imported-modules
-                                #:outputs outputs
-                                #:guile-for-build guile-for-build))
+  (mlet %store-monad ((guile (package->derivation (or guile (default-guile))
+                                                  system #:graft? #f)))
+    ;; Note: Always pass #:graft? #f.  Without it, ALLOWED-REFERENCES &
+    ;; co. would be interpreted as referring to grafted packages.
+    (gexp->derivation name builder
+                      #:system system
+                      #:target #f
+                      #:graft? #f
+                      #:guile-for-build guile)))
 
 (define elixir-build-system
   (build-system

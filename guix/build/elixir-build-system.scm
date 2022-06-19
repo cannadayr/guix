@@ -88,7 +88,7 @@ working directory."
   (if tests?
       (begin
         (setenv "MIX_ENV" test-environment)
-        (invoke `("mix" ,test-target)))
+        (invoke "mix" test-target))
       (format #t "test suite not run~%"))
   #t)
 
