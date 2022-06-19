@@ -332,6 +332,7 @@ nodes using CSS selectors.")
     (synopsis "Documentation generation tool for Elixir")
     (description "This package provides a documentation generation tool for
 Elixir.")
+    (license license:asl2.0)))
 
 (define-public elixir-extractly
   (package
