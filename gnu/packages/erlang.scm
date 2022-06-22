@@ -564,6 +564,13 @@ server component in Erlang.")
                (base32
                 "1fsf3rbffq47ykm8lp35br8k7wkbqnq2qn0jdsmhl9j2zdal7s9h"))))
     (build-system rebar-build-system)
+    (arguments
+     `(#:phases
+       (modify-phases %standard-phases
+         (add-before 'build 'build-setup
+           (lambda _
+             (setenv "DEBUG" "1")
+             (setenv "HOME" "/tmp"))))))
     (inputs (list erlang-pc))
     (home-page "https://github.com/processone/ezlib/")
     (synopsis "Native zlib driver for Erlang / Elixir")
