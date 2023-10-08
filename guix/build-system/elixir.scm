@@ -73,7 +73,7 @@
          (build elixir-build)
          (arguments (strip-keyword-arguments private-keywords arguments)))))
 
-(define* (elixir-build store name inputs
+(define* (elixir-build name inputs
                        #:key
                        guile source
                        (mix-flags ''())
