@@ -55,7 +55,7 @@
                 (elixir (default-elixir))
                 #:allow-other-keys
                 #:rest arguments)
-  "Return a bag for NAME."
+  "Return a bag for NAME from the given arguments."
   (define private-keywords
     '(#:source #:target #:mix #:inputs #:native-inputs))
 
@@ -69,8 +69,8 @@
                         ,@inputs))
          (build-inputs `(("elixir" ,elixir)
                          ,@native-inputs
-                        ;; Keep the standard inputs of 'gnu-build-system'.
-                        ,@(standard-packages)))
+                         ;; Keep the standard inputs of 'gnu-build-system'.
+                         ,@(standard-packages)))
          (outputs outputs)
          (build elixir-build)
          (arguments (strip-keyword-arguments private-keywords arguments)))))
@@ -103,22 +103,22 @@
 
           #$(with-build-variables inputs outputs
               #~(elixir-build #:source #+source
-                     #:system #$system
-                     #:name ,name
-                     #:mix-flags ,mix-flags
-                     #:tests? ,tests?
-                     #:test-target ,test-target
-                     #:build-target ,build-target
-                     #:build-environment ,build-environment
+                      #:system #$system
+                      #:name ,name
+                      #:mix-flags ,mix-flags
+                      #:tests? ,tests?
+                      #:test-target ,test-target
+                      #:build-target ,build-target
+                      #:build-environment ,build-environment
                      ;; TODO: #:install-name #$install-name
                       #:phases #$(if (pair? phases)
                                      (sexp->gexp phases)
                                      phases)
-                     #:outputs %outputs
-                     #:search-paths '#$(sexp->gexp
-                                        (map search-path-specification->sexp
-                                             search-paths))
-                     #:inputs %build-inputs)))))
+                      #:outputs %outputs
+                      #:search-paths '#$(sexp->gexp
+                                         (map search-path-specification->sexp
+                                              search-paths))
+                      #:inputs %build-inputs)))))
 
   (mlet %store-monad ((guile (package->derivation (or guile (default-guile))
                                                   system #:graft? #f)))
