@@ -55,7 +55,7 @@
                 #:rest arguments)
   "Return a bag for NAME from the given arguments."
   (define private-keywords
-    '(#:source #:target #:mix #:inputs #:native-inputs))
+    '(#:target #:mix #:inputs #:native-inputs))
 
   (and (not target)                               ;XXX: no cross-compilation
        (bag
