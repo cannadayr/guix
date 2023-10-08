@@ -102,12 +102,12 @@
           #$(with-build-variables inputs outputs
               #~(elixir-build #:source #+source
                       #:system #$system
-                      #:name ,name
-                      #:mix-flags ,mix-flags
-                      #:tests? ,tests?
-                      #:test-target ,test-target
-                      #:build-target ,build-target
-                      #:build-environment ,build-environment
+                      #:name #$name
+                      #:mix-flags #$mix-flags
+                      #:tests? #$tests?
+                      #:test-target #$test-target
+                      #:build-target #$build-target
+                      #:build-environment #$build-environment
                      ;; TODO: #:install-name #$install-name
                       #:phases #$(if (pair? phases)
                                      (sexp->gexp phases)
