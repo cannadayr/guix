@@ -3583,6 +3583,6 @@ Erlang, featuring:
 @item MQTT server;
 @item SIP server.
 @end itemize")
-    (license "GPLv2")))
+    (license license:gpl2)))
 
 ;;; messaging.scm ends here
